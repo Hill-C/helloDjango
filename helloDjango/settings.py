@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'first',
 ]
 
 MIDDLEWARE = [
@@ -78,12 +79,18 @@ DATABASES = {
         #数据库引擎
         'ENGINE': 'django.db.backends.mysql',
         #数据库名称
-        'NAME': BASE_DIR / 'hellodjango',
+        'NAME': 'hellodjango',
         #数据库服务器地址
-        'HOST':'localhost',
+        'HOST': '127.0.0.1',
         #启动端口
-        'PORT':3306,
-
+        'PORT': 3306,
+        #数据库账户+密码
+        'USER': 'root',
+        'PASSWORD': 'mysqldaemon',
+        #数据库使用字符集
+        'CHARSET': 'UTF-8',
+        #数据库时间日期设定
+        'TIME_ZONE': 'Asia/Chongqing',
     }
 }
 
@@ -122,7 +129,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
